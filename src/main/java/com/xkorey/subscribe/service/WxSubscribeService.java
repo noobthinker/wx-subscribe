@@ -43,6 +43,7 @@ public class WxSubscribeService implements IService {
 
     TokenResult newToken(){
         ResponseEntity<TokenResult> result = restTemplate.getForEntity(apiTokenUrl, TokenResult.class);
+        log.info("wx result : ",result);
         if(result.getStatusCode()== HttpStatus.OK){
             return result.getBody();
         }
