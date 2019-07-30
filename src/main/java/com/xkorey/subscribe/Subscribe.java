@@ -13,7 +13,7 @@ public class Subscribe {
     @RequestMapping({"/","/index.html","index.do"})
     public String index(Signature signature){
         if(null!=signature){
-            log.info("str {}",signature.getEchostr());
+            log.info("signature {}",signature);
         }
         return "";
     }
