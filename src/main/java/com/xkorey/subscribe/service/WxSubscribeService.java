@@ -1,6 +1,7 @@
 package com.xkorey.subscribe.service;
 
 import com.xkorey.subscribe.pojo.MessageRequest;
+import com.xkorey.subscribe.pojo.MessageResponse;
 import com.xkorey.subscribe.pojo.TokenResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -43,15 +44,18 @@ public class WxSubscribeService implements IService {
     }
 
     @Override
-    public MessageRequest responseUserTxtMessage(MessageRequest request) {
+    public MessageResponse responseUserTxtMessage(MessageRequest request) {
         log.info("recive :{}",request);
-        MessageRequest response = new MessageRequest();
-        response.setContent(request.getContent());
-        response.setCreateTime(new Date().getTime()/1000);
-        response.setFromUserName(request.getToUserName());
-        response.setToUserName(request.getFromUserName());
-        response.setContent(request.getContent());
-        log.info("response :{}",response);
+        MessageRequest body = new MessageRequest();
+        body.setContent(request.getContent());
+        body.setCreateTime(new Date().getTime()/1000);
+        body.setFromUserName(request.getToUserName());
+        body.setToUserName(request.getFromUserName());
+        body.setContent(request.getContent());
+        log.info("response :{}",body);
+        MessageResponse response = new MessageResponse();
+        response.setAccess_token(token());
+        response.setBody(body);
         return response;
     }
 

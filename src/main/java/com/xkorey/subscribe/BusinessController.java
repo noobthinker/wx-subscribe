@@ -1,6 +1,7 @@
 package com.xkorey.subscribe;
 
 import com.xkorey.subscribe.pojo.MessageRequest;
+import com.xkorey.subscribe.pojo.MessageResponse;
 import com.xkorey.subscribe.service.IService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class BusinessController {
     IService service;
 
     @PostMapping("/")
-    public MessageRequest message(@RequestBody MessageRequest request){
+    public MessageResponse message(@RequestBody MessageRequest request){
         return service.responseUserTxtMessage(request);
     }
 }
