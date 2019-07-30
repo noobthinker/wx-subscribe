@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class Subscribe {
+public class SubscribeController {
 
     @Value("${signature.flag}")
     boolean signatureFlag;
