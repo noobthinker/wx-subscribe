@@ -13,7 +13,9 @@ public class Subscribe {
     @RequestMapping({"/","/index.html","index.do"})
     public String index(Signature signature){
         if(null!=signature){
-            log.info("signature {}",signature);
+            if(null!=signature.getEchostr()){
+                return signature.getEchostr();
+            }
         }
         return "";
     }
