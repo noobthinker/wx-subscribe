@@ -35,17 +35,14 @@ public class WxSubscribeService implements IService {
             return token;
         }
         TokenResult result = newToken();
-        log.info("token : {}",token);
+        log.info("token : {}",result);
         redisTemplate.opsForValue().set(tokenKeyRedis,result.getAccessToken(),result.getExpiresIn(), TimeUnit.SECONDS);
         return result.getAccessToken();
     }
 
 
     TokenResult newToken(){
-        ResponseEntity<String> sResult =  restTemplate.getForEntity(apiTokenUrl, String.class);
         ResponseEntity<TokenResult> result = restTemplate.getForEntity(apiTokenUrl, TokenResult.class);
-        log.info("wx result : ",result);
-        log.info("string result : {}",sResult);
         if(result.getStatusCode()== HttpStatus.OK){
             return result.getBody();
         }
