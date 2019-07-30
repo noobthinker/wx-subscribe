@@ -53,10 +53,10 @@ public class WxSubscribeService implements IService {
         body.setToUserName(request.getFromUserName());
         body.setContent(request.getContent());
         body.setMsgType(request.getMsgType());
-        log.info("response :{}",body);
         MessageResponse response = new MessageResponse();
         response.setAccess_token(token());
         response.setBody(body);
+        log.info("response :{}",response);
         return response;
     }
 
