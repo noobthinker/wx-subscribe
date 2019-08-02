@@ -1,5 +1,6 @@
 package com.xkorey.subscribe.service;
 
+import com.google.common.collect.Maps;
 import com.xkorey.subscribe.pojo.MessageRequest;
 import com.xkorey.subscribe.pojo.MessageResponse;
 import com.xkorey.subscribe.pojo.TokenResult;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -31,6 +34,10 @@ public class WxSubscribeService implements IService {
 
     final String tokenKeyRedis="o:wx:token";
 
+
+    @Value("${admin.name}")
+    String backName;
+
     @Override
     public String token() {
         String token = redisTemplate.opsForValue().get(tokenKeyRedis);
@@ -46,6 +53,7 @@ public class WxSubscribeService implements IService {
     @Override
     public MessageResponse responseUserTxtMessage(MessageRequest request) {
         log.info("recive :{}",request);
+
         MessageRequest body = new MessageRequest();
         body.setContent(request.getContent());
         body.setCreateTime(new Date().getTime()/1000);
@@ -57,7 +65,15 @@ public class WxSubscribeService implements IService {
         response.setAccess_token(token());
         response.setBody(body);
         log.info("response :{}",response);
+
         return response;
+    }
+
+    @Override
+    public Map commonProp() {
+        HashMap<String, String> prop = Maps.newHashMap();
+        prop.put("name",backName);
+        return prop;
     }
 
     TokenResult newToken(){
