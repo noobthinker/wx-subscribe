@@ -15,14 +15,14 @@ public class StaffItemResponse {
 
 
     @Data
-    public class StaffContent{
+    public static class StaffContent{
 
         @JsonProperty("news_item")
         private List<Item> newsItem;
     }
 
     @Data
-    public class Item{
+    public static class Item{
         private String  title;
         @JsonProperty("thumb_media_id")
         private String thumbMediaId;
