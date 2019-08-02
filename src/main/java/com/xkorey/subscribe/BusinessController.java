@@ -17,7 +17,7 @@ public class BusinessController {
     IService service;
 
     @PostMapping("/")
-    public MessageResponse message(@RequestBody MessageRequest request){
+    public MessageRequest message(@RequestBody MessageRequest request){
         return service.responseUserTxtMessage(request);
     }
 }
