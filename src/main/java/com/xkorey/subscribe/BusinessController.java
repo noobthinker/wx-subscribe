@@ -29,13 +29,4 @@ public class BusinessController {
         return service.responseUserTxtMessage(request);
     }
 
-    @RequestMapping("/staff")
-    public void testGetStaff(){
-        StaffItemRequest request = new StaffItemRequest();
-        request.setAccessToken(service.token());
-        request.setType(StaffType.news);
-        request.setOffset(0);
-        request.setCount(20);
-        staffService.getAllStaff(request);
-    }
 }

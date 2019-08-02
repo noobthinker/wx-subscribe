@@ -16,7 +16,6 @@ public class StaffItemResponse {
 
     @Data
     public static class StaffContent{
-
         @JsonProperty("news_item")
         private List<Item> newsItem;
     }

@@ -54,6 +54,54 @@
 
         <!-- Main content -->
 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">图文列表</h3>
+                    </div>
+                    <div class="card-tools">
+                        <span class="badge badge-danger">${count}个素材</span>
+                        <button type="button" class="btn btn-tool" data-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>素材ID</th>
+                                <th>标题</th>
+                                <th>点击查看</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <#list staffList as staff>
+                            <tr onclick="">
+                                <td>${1+staff_index }</td>
+                                <td>${staff.id}</td>
+                                <td>
+                                    ${staff.title}</td>
+                                <td><a href="${staff.url}">查看</a></td>
+                            </tr>
+                            </#list>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <a href="/back/user-edit-add.html" class="btn btn-sm btn-info float-left">下一页</a>
+                        <a href="/back/user-edit-add.html" class="btn btn-sm btn-info float-right">上一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

@@ -2,6 +2,7 @@ package com.xkorey.subscribe;
 
 import com.xkorey.subscribe.pojo.dto.BackUser;
 import com.xkorey.subscribe.pojo.form.Login;
+import com.xkorey.subscribe.service.IStaffService;
 import com.xkorey.subscribe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class AdminController {
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    IStaffService staffService;
 
     @RequestMapping({"/login.html","/login"})
     public String login(Model model){
@@ -84,9 +88,9 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/back/staff.html")
-    public String staff(){
-        return "sec/staff/all";
+    @RequestMapping("/back/staff-{page}.html")
+    public String staff(Model model,@PathVariable  Integer page){
+        return staffService.staffPage(page,model);
     }
 
 
