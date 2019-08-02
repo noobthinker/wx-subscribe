@@ -16,7 +16,7 @@ public class BusinessController {
     @Autowired
     IService service;
 
-    @PostMapping("/")
+    @PostMapping(value = "/",produces = {"application/xml;charset=UTF-8"})
     public MessageRequest message(@RequestBody MessageRequest request){
         return service.responseUserTxtMessage(request);
     }
