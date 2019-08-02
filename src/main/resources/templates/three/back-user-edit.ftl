@@ -75,7 +75,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPassword3" placeholder="密码" name="passwd" value="${user.passwd}">
+                                    <input type="text" class="form-control" id="inputPassword3" placeholder="密码" name="passwd" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
