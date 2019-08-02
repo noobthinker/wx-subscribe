@@ -32,7 +32,7 @@ public class StaffService  extends DiskDataService implements IStaffService  {
         param.put("type",request.getType().getName());
         param.put("offset",request.getOffset());
         param.put("count",request.getCount());
-        ResponseEntity<Staff> staff = restTemplate.postForEntity(staffUrl,param, Staff.class);
+        ResponseEntity<Staff> staff = restTemplate.postForEntity(staffUrl,param, Staff.class,request.getAccessToken());
         if(staff.getStatusCode()== HttpStatus.OK){
             log.info("response : {}",staff.getBody());
         }
