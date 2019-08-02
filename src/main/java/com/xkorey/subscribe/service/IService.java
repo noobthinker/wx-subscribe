@@ -9,7 +9,7 @@ public interface IService {
 
     String token();
 
-    MessageResponse responseUserTxtMessage(MessageRequest request);
+    MessageRequest responseUserTxtMessage(MessageRequest request);
 
     Map commonProp();
 

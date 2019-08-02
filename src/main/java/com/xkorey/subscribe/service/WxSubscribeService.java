@@ -51,7 +51,7 @@ public class WxSubscribeService implements IService {
     }
 
     @Override
-    public MessageResponse responseUserTxtMessage(MessageRequest request) {
+    public MessageRequest responseUserTxtMessage(MessageRequest request) {
         log.info("recive :{}",request);
 
         MessageRequest body = new MessageRequest();
@@ -65,8 +65,7 @@ public class WxSubscribeService implements IService {
         response.setAccess_token(token());
         response.setBody(body);
         log.info("response :{}",response);
-
-        return response;
+        return body;
     }
 
     @Override
