@@ -68,7 +68,7 @@ public class StaffService  extends DiskDataService implements IStaffService  {
                 Map m = new HashMap(3);
                 m.put("id",s.getMediaId());
                 m.put("title",s.getContent().getNewsItem().get(0).getTitle());
-                m.put("url",s.getContent().getNewsItem().get(0).getUrl());
+                m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
                 result.add(m);
             });
             model.addAttribute("staffList",result);
@@ -77,7 +77,7 @@ public class StaffService  extends DiskDataService implements IStaffService  {
             List<Map> result = new ArrayList(1);
             model.addAttribute("staffList",result);
         }
-        model.addAttribute("count",staff.getTotalCount());
+        model.addAttribute("count",count);
         return "sec/staff/all";
     }
 
