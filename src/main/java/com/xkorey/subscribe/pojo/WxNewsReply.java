@@ -1,6 +1,7 @@
 package com.xkorey.subscribe.pojo;
 
 
+import com.sun.xml.internal.txw2.annotation.XmlCDATA;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -34,6 +35,16 @@ public class WxNewsReply {
 
         @XmlElement
         private String url;
+
+        @XmlCDATA
+        public String getPicUrl() {
+            return PicUrl;
+        }
+
+        @XmlCDATA
+        public String getUrl() {
+            return url;
+        }
     }
 
 }
