@@ -96,7 +96,7 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="/back/activity-add.html" class="btn btn-sm btn-info float-left">添加新用户</a>
+                        <a href="/back/activity-add.html" class="btn btn-sm btn-info float-left">添加活动</a>
                     </div>
                 </div>
             </div>
