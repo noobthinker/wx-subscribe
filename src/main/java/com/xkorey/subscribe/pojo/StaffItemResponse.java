@@ -34,6 +34,8 @@ public class StaffItemResponse {
 
         private String content;
 
+        private String name;
+
         private String url;
         @JsonProperty("content_source_url")
         private String contentSourceUrl;

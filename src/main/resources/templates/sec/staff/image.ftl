@@ -59,10 +59,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">图文列表</h3>
+                        <h3 class="card-title">图片列表</h3>
                     </div>
                     <div class="card-tools">
-                        <span class="badge badge-danger">${count}个素材</span>
+                        <span class="badge badge-danger">${count}个图片</span>
                         <button type="button" class="btn btn-tool" data-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>

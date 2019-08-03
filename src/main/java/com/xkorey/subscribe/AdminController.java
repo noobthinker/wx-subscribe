@@ -1,5 +1,6 @@
 package com.xkorey.subscribe;
 
+import com.xkorey.subscribe.enums.StaffType;
 import com.xkorey.subscribe.pojo.dto.BackUser;
 import com.xkorey.subscribe.pojo.form.Login;
 import com.xkorey.subscribe.service.IStaffService;
@@ -90,13 +91,15 @@ public class AdminController {
 
     @RequestMapping("/back/staff-{page}.html")
     public String staff(Model model,@PathVariable  Integer page){
-        return staffService.staffPage(page,model);
+        staffService.staffPage(page,model, StaffType.news);
+        return "sec/staff/all";
     }
 
 
     @RequestMapping("/back/staffSettings.html")
-    public String staffSettings(){
-        return "sec/staff/settings";
+    public String staffSettings(Model model,@PathVariable  Integer page){
+        staffService.staffPage(page,model, StaffType.news);
+        return "sec/staff/image";
     }
 
 

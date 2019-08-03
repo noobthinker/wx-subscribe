@@ -6,6 +6,7 @@ import com.xkorey.subscribe.pojo.StaffItemRequest;
 import com.xkorey.subscribe.pojo.StaffItemResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -48,16 +49,14 @@ public class StaffService  extends DiskDataService implements IStaffService  {
     }
 
     @Override
-    public String staffPage(Integer page, Model model) {
+    public String staffPage(Integer page, Model model,StaffType type) {
         if(null==page){
             page=0;
-        }else{
-            page*=20;
         }
         StaffItemRequest request = new StaffItemRequest();
         request.setAccessToken(service.token());
-        request.setType(StaffType.news);
-        request.setOffset(page);
+        request.setType(type);
+        request.setOffset(page*20);
         request.setCount(20);
         Integer count = 0;
         Staff staff = getAllStaff(request);
@@ -67,7 +66,11 @@ public class StaffService  extends DiskDataService implements IStaffService  {
             staff.getItem().stream().forEach(s->{
                 Map m = new HashMap(3);
                 m.put("id",s.getMediaId());
-                m.put("title",s.getContent().getNewsItem().get(0).getTitle());
+                if(StringUtils.isEmpty(s.getContent().getNewsItem().get(0).getTitle())){
+                    m.put("title",s.getContent().getNewsItem().get(0).getName());
+                }else{
+                    m.put("title",s.getContent().getNewsItem().get(0).getTitle());
+                }
                 m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
                 result.add(m);
             });
@@ -77,6 +80,8 @@ public class StaffService  extends DiskDataService implements IStaffService  {
             List<Map> result = new ArrayList(1);
             model.addAttribute("staffList",result);
         }
+        model.addAttribute("next",page+1);
+        model.addAttribute("pre",Math.max(0,page-1));
         model.addAttribute("count",count);
         return "sec/staff/all";
     }
