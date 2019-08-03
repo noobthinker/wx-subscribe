@@ -47,7 +47,7 @@ public class PageService extends DiskDataService<Page> implements IPageService {
     @Override
     public String addPage(Page page) {
         ValueOperations<String, String> op = redisTemplate.opsForValue();
-        page.setId(StringUtils.join(Calendar.getInstance().get(Calendar.MINUTE),RandomStringUtils.random(6)));
+        page.setId(StringUtils.join(Calendar.getInstance().getTime().getTime()));
         if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getNewsId())))){
             throw new BackException("素材id未找到");
         }else{
@@ -66,6 +66,6 @@ public class PageService extends DiskDataService<Page> implements IPageService {
         }
         dataList.add(page);
         needSaveToDisk.incrementAndGet();
-        return "redirect:sec/msg/page";
+        return "redirect:/back/msgPage.html";
     }
 }
