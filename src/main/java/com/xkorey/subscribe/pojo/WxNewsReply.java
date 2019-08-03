@@ -18,6 +18,8 @@ public class WxNewsReply {
     private List<ReplayNews> item;
 
 
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "item")
     @Data
     public static class ReplayNews{
 
