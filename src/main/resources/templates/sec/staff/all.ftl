@@ -86,7 +86,7 @@
                                 <td>${staff.id}</td>
                                 <td>
                                     ${staff.title}</td>
-                                <td><a href="${staff.url}">查看</a></td>
+                                <td><a href="${staff.url}" target="_blank">查看</a></td>
                             </tr>
                             </#list>
 
