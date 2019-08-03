@@ -44,7 +44,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">${name} v1</li>
+                            <li class="breadcrumb-item active">菜单</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -56,7 +56,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">底部菜单</h3>
+                        <h3 class="card-title">菜单</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -64,22 +64,28 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>姓名</th>
-                                <th>登陆邮箱</th>
-                                <th>添加时间</th>
+                                <th>菜单名</th>
+                                <th>子菜单</th>
                                 <th>--</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            <#list users as user>
+                            <#list dataList as data>
                             <tr onclick="">
-                                <td>${1+user_index }</td>
-                                <td>${user.name}</td>
+                                <td>${1+data_index }</td>
+                                <td>${data.name}</td>
                                 <td>
-                                    ${user.email}</td>
-                                <td>${user.createdAt}</td>
-                                <td><a href="/back/user-edit-${user.id}.html">修改</a></td>
+                                    <#if data.subButton ??>
+                                        <#list data.subButton as sub>
+                                            <a href="/back/menu-edit-${sub.id}.html">${sub.name}</a> |
+                                        </#list>
+                                        <#else >
+                                        没有子菜单
+                                    </#if>
+
+                                </td>
+                                <td><a href="/back/menu-edit-${data.id}.html">改名</a></td>
                             </tr>
                             </#list>
 
@@ -87,7 +93,8 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="/back/user-edit-add.html" class="btn btn-sm btn-info float-left">添加菜单</a>
+                        <a href="/back/menu-add.html" class="btn btn-sm btn-info float-left">添加菜单</a>
+                        <a href="/back/menu-online.html" class="btn btn-sm btn-info float-right">菜单上线</a>
                     </div>
                 </div>
             </div>

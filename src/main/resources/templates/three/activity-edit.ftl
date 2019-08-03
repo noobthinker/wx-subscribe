@@ -63,7 +63,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="/back/activity-add-submit.html">
+                    <form class="form-horizontal" action="/back/activity-add-submit.html" method="post">
                         <input type="hidden" name="id" value="${data.id}"/>
                         <div class="card-body">
                             <div class="form-group row">

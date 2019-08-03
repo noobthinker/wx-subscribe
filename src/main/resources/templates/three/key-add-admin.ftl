@@ -24,13 +24,14 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-    <#include "../../sub/header.ftl"/>
+    <#include "../sub/header.ftl"/>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -43,8 +44,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">${name} v1</li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/back/msgKey.html">消息关键字</a></li>
+                            <li class="breadcrumb-item active">暂未实现</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -54,54 +56,7 @@
 
         <!-- Main content -->
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">图文回复列表</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <td>Id</td>
-                                <td>状态</td>
-                                <th>标题</th>
-                                <th>描述</th>
-                                <th>添加时间</th>
-                                <th>--</th>
-                            </tr>
-                            </thead>
-                            <tbody>
 
-                            <#list dataList as data>
-                            <tr onclick="">
-                                <td>${1+data_index }</td>
-                                <td>${data.id}</td>
-                                <td><#if data.status==1>
-                                    线上
-                                    <#else>
-                                    下线
-                                </#if></td>
-                                <td>${data.targetList}</td>
-                                <td>${data.functionTxt}</td>
-                                <td>
-                                    ${data.keyType.getDesc()}</td>
-                                <td><a href="/back/key-page-convert-${data.id}.html">状态转换</a></td>
-                            </tr>
-                            </#list>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer clearfix">
-                        <a href="/back/user-page-add.html" class="btn btn-sm btn-info float-left">添加</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <!-- /.content -->
@@ -115,7 +70,7 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <#include "../../sub/footer.ftl">
+    <#include "../sub/footer.ftl">
 
 </div>
 <!-- ./wrapper -->
@@ -139,10 +94,18 @@
 <script src="/plugins/raphael/raphael.min.js"></script>
 <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="/plugins/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="/plugins/select2/js/select2.full.js"></script>
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
 
 <!-- PAGE SCRIPTS -->
 <script src="/js/pages/dashboard2.js"></script>
+
+<script>
+    $(function () {
+        $('.select2').select2()
+    })
+
+</script>
 </body>
 </html>

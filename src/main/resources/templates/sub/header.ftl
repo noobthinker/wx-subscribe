@@ -71,7 +71,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/back/msgKeyPage.html" class="nav-link">
+                                <a href="/back/key-page.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>关键字绑定</p>
                                 </a>

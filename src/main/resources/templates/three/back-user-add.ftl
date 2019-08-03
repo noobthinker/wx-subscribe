@@ -63,7 +63,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="/back/user-edit-submit.html">
+                    <form class="form-horizontal" action="/back/user-edit-submit.html" method="post">
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>

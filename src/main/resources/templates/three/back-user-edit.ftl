@@ -63,7 +63,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="/back/user-edit-submit.html">
+                    <form class="form-horizontal" action="/back/user-edit-submit.html" method="post">
                         <input type="hidden" name="id" value="${user.id}">
                         <div class="card-body">
                             <div class="form-group row">
