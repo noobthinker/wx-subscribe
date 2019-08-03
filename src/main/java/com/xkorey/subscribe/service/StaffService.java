@@ -71,7 +71,11 @@ public class StaffService  extends DiskDataService implements IStaffService  {
                 }else{
                     m.put("title",s.getContent().getNewsItem().get(0).getTitle());
                 }
-                m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
+                if(StringUtils.isEmpty(s.getContent().getNewsItem().get(0).getContentSourceUrl())){
+                    m.put("url",s.getContent().getNewsItem().get(0).getUrl());
+                }else{
+                    m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
+                }
                 result.add(m);
             });
             model.addAttribute("staffList",result);
