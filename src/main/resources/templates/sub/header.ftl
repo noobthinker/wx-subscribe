@@ -100,7 +100,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/back/staff-i-{0}.html" class="nav-link">
+                                <a href="/back/staff-i-0.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>图片素材</p>
                                 </a>
