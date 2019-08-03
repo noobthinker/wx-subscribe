@@ -48,12 +48,12 @@ public class PageService extends DiskDataService<Page> implements IPageService {
     public String addPage(Page page) {
         ValueOperations<String, String> op = redisTemplate.opsForValue();
         page.setId(StringUtils.join(Calendar.getInstance().get(Calendar.MINUTE),RandomStringUtils.random(3)));
-        if(StringUtils.isEmpty(op.get(page.getNewsId()))){
+        if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getNewsId())))){
             throw new BackException("素材id未找到");
         }else{
             page.setUrl(op.get(StringUtils.join(Common.staffKey,page.getNewsId())));
         }
-        if(StringUtils.isEmpty(op.get(page.getImageId()))){
+        if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getImageId())))){
             throw new BackException("图片id未找到");
         }else{
             page.setUrl(op.get(StringUtils.join(Common.staffKey,page.getImageId())));
