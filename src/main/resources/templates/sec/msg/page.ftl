@@ -77,11 +77,11 @@
                             <#list pages as page>
                             <tr onclick="">
                                 <td>${1+page_index }</td>
-                                <td>${user.name}</td>
+                                <td>${page.title}</td>
                                 <td>
-                                    ${user.email}</td>
-                                <td>${user.createdAt}</td>
-                                <td><a href="/back/page-edit-${page.id}.html">修改</a></td>
+                                    ${page.desc}</td>
+                                <td>${page.createdAt}</td>
+                                <td><a href="${page.url}" target="_blank">查看</a></td>
                             </tr>
                             </#list>
 
@@ -89,7 +89,7 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="/back/user-page-add.html" class="btn btn-sm btn-info float-left">添加新用户</a>
+                        <a href="/back/user-page-add.html" class="btn btn-sm btn-info float-left">添加</a>
                     </div>
                 </div>
             </div>
