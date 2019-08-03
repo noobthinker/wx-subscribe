@@ -71,7 +71,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 control-label">菜单</label>
                                 <div class="col-sm-10">
-                                    <select name="targetList" onchange="changeIds()" class="form-control select2" data-placeholder="选择一个菜单">
+                                    <select name="targetList" class="form-control select2" data-placeholder="选择一个菜单">
                                         <#list menuList as data>
                                             <option value="${data.id}">${data.name}</option>
                                         </#list>
