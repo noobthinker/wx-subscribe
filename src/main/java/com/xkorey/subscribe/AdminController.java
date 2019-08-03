@@ -98,7 +98,7 @@ public class AdminController {
 
     @RequestMapping("/back/staffi-{page}.html")
     public String staffSettings(Model model,@PathVariable  Integer page){
-        staffService.staffPage(page,model, StaffType.news);
+        staffService.staffPage(page,model, StaffType.image);
         return "sec/staff/image";
     }
 
