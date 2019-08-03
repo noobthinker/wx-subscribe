@@ -67,11 +67,7 @@
 			<artifactId>guava</artifactId>
 			<version>28.0-jre</version>
 		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.txw2</groupId>
-			<artifactId>txw2</artifactId>
-			<version>20110809</version>
-		</dependency>
+		
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->

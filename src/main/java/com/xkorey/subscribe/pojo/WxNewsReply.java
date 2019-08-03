@@ -35,16 +35,6 @@ public class WxNewsReply {
 
         @XmlElement
         private String url;
-
-        @XmlCDATA
-        public String getPicUrl() {
-            return PicUrl;
-        }
-
-        @XmlCDATA
-        public String getUrl() {
-            return url;
-        }
     }
 
 }
