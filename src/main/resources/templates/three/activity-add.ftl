@@ -44,8 +44,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/back/msgPage.html">消息</a></li>
-                            <li class="breadcrumb-item active">添加图文</li>
+                            <li class="breadcrumb-item"><a href="/back/activity.html">活动</a></li>
+                            <li class="breadcrumb-item active">添加活动</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -59,16 +59,16 @@
             <div class="col-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">添加图文</h3>
+                        <h3 class="card-title">添加活动</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="/back/page-add-submit.html">
+                    <form class="form-horizontal" action="/back/activity-add-submit.html">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">标题</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">活动名</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="标题" name="title">
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="活动名" name="name">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -78,21 +78,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword3" class="col-sm-2 control-label">跳转素材id</label>
+                                <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="跳转素材id" name="newsId">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputPassword3" class="col-sm-2 control-label">封面素材id</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="封面素材id" name="imageId">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="备注" name="note">
+                                    <select name="status" class="form-control">
+                                        <option value="1">上线</option>
+                                        <option value="0">下线</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

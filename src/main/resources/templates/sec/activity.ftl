@@ -44,7 +44,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">${name} v1</li>
+                            <li class="breadcrumb-item active">${name} 活动维护</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -53,6 +53,55 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">后台活动列表</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Id</th>
+                                <th>名称</th>
+                                <th>状态</th>
+                                <th>描述</th>
+                                <th>添加时间</th>
+                                <th>--</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <#list dataList as data>
+                            <tr onclick="">
+                                <td>${1+data_index }</td>
+                                <td>${data.id}</td>
+                                <td>${data.name}</td>
+                                <td>
+                                    <#if data.status=='1' >
+                                        有效
+                                        <#else >
+                                        无效
+                                    </#if>
+                                <td>${data.desc}</td>
+                                <td>${data.createdAt}</td>
+                                <td><a href="/back/activity-edit-${data.id}.html">修改</a></td>
+                            </tr>
+                            </#list>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <a href="/back/activity-add.html" class="btn btn-sm btn-info float-left">添加新用户</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- /.content -->
     </div>

@@ -68,7 +68,7 @@
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/back/key-add-txt.html" class="small-box-footer">
                         新建 <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -85,7 +85,7 @@
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/back/key-add-activity.html" class="small-box-footer">
                         新建 <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/back/key-add-menu.html" class="small-box-footer">
                         新建 <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/back/key-add-news.html" class="small-box-footer">
                         新建 <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -135,7 +135,23 @@
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="/back/key-add-admin.html" class="small-box-footer">
+                        新建 <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>菜单参加活动</h3>
+                        <p>菜单触发参加活动</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <a href="/back/key-add-menuActivity.html" class="small-box-footer">
                         新建 <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

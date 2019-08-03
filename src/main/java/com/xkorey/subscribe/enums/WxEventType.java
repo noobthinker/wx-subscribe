@@ -10,6 +10,7 @@ public enum WxEventType {
     subscribe("subscribe","用户订阅公众号"),
     unsubscribe("unsubscribe","用户取消订阅公众号"),
     text("text","文本消息"),
+    news("news","图文消息回复"),
     image("image","图片消息"),
     voice("voice","语音消息"),
     video("video","视频消息"),

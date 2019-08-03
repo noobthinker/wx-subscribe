@@ -1,12 +1,11 @@
 package com.xkorey.subscribe;
 
 import com.xkorey.subscribe.enums.StaffType;
+import com.xkorey.subscribe.pojo.Activity;
 import com.xkorey.subscribe.pojo.dto.BackUser;
 import com.xkorey.subscribe.pojo.dto.Page;
 import com.xkorey.subscribe.pojo.form.Login;
-import com.xkorey.subscribe.service.IPageService;
-import com.xkorey.subscribe.service.IStaffService;
-import com.xkorey.subscribe.service.IUserService;
+import com.xkorey.subscribe.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +26,12 @@ public class AdminController {
 
     @Autowired
     IPageService pageService;
+
+    @Autowired
+    IFunctionService functionService;
+
+    @Autowired
+    IActivityService activityService;
 
     @RequestMapping({"/login.html","/login"})
     public String login(Model model){
@@ -66,7 +71,8 @@ public class AdminController {
     }
 
     @RequestMapping("/back/activity.html")
-    public String activity(){
+    public String activity(Model model){
+        model.addAttribute("dataList",((DiskDataService)activityService).getAllData());
         return "sec/activity";
     }
 
@@ -148,4 +154,25 @@ public class AdminController {
     }
 
 
+    @RequestMapping("/back/key-add-{type}.html")
+    public String addKey(Model model,@PathVariable String type){
+        return "";
+    }
+
+    @RequestMapping("/back/activity-add.html")
+    public String activityAdd(){
+        return "three/activity-add";
+    }
+
+    @RequestMapping("/back/activity-edit-{id}.html")
+    public String activityEdit(Model model,@PathVariable String id){
+        activityService.getOne(model,id);
+        return "three/activity-edit";
+    }
+
+    @RequestMapping("/back/activity-add-submit.html")
+    public String activityAddSubmit(@Valid Activity activity){
+        activityService.add(activity);
+        return "redirect:/back/activity.html";
+    }
 }

@@ -48,7 +48,7 @@ public class SubscribeApplication {
 	@Bean
 	Cache applicationCache(){
 		return CacheBuilder.newBuilder()
-				.maximumSize(500)
+				.maximumSize(1000)
 				.build();
 	}
 

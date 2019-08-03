@@ -2,7 +2,6 @@ package com.xkorey.subscribe.service;
 
 import com.google.common.cache.Cache;
 import com.google.common.reflect.TypeToken;
-import com.xkorey.subscribe.exception.BackException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,13 +66,14 @@ public abstract class DiskDataService<T> implements IDiskDataService<T> {
         return type;
     }
 
-    List<T> getAllData(){
+    public List<T> getAllData(){
         List<T> dataList = (List<T>) applicationCache.getIfPresent(getPrefix());
         if (CollectionUtils.isEmpty(dataList)) {
             return new CopyOnWriteArrayList<T>();
         }
         return dataList;
     }
+
 
 }
 

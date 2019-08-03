@@ -1,5 +1,7 @@
 package com.xkorey.subscribe.service;
 
+import java.util.List;
+
 public interface IDiskDataService<T> {
 
 
@@ -10,5 +12,7 @@ public interface IDiskDataService<T> {
     void loadData();
 
     void saveData();
+
+    List<T> getAllData();
 
 }

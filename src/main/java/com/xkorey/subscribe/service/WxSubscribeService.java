@@ -1,9 +1,11 @@
 package com.xkorey.subscribe.service;
 
+import com.google.common.cache.Cache;
 import com.google.common.collect.Maps;
 import com.xkorey.subscribe.pojo.MessageRequest;
 import com.xkorey.subscribe.pojo.MessageResponse;
 import com.xkorey.subscribe.pojo.TokenResult;
+import com.xkorey.subscribe.service.reply.IReplay;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class WxSubscribeService implements IService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    Cache applicationCache;
+
     @Value("${wx.tokenUrl}")
     String apiTokenUrl;
 
@@ -53,18 +58,38 @@ public class WxSubscribeService implements IService {
     @Override
     public MessageRequest responseUserTxtMessage(MessageRequest request) {
         log.info("recive :{}",request);
+        // event push
+        String magicKey=null;
+        if(request.getMsgType().equalsIgnoreCase("event")){
+            if(request.getEvent().equalsIgnoreCase("")){
+                magicKey="subscribe";
+            }
+            if(StringUtils.isNotEmpty(request.getEventKey())){
+                magicKey=request.getEvent();
+            }
+        }else{
+            if(request.getMsgType().equalsIgnoreCase("text")){
+                magicKey=request.getContent();
+            }
+        }
 
         MessageRequest body = new MessageRequest();
-        body.setContent(request.getContent());
         body.setCreateTime(new Date().getTime()/1000);
         body.setFromUserName(request.getToUserName());
         body.setToUserName(request.getFromUserName());
-        body.setContent(request.getContent());
-        body.setMsgType(request.getMsgType());
-        MessageResponse response = new MessageResponse();
-        response.setAccess_token(token());
-        response.setBody(body);
-        log.info("response :{}",response);
+        if(StringUtils.isEmpty(magicKey)){
+            body.setContent("该功能暂不支持，敬请期待！");
+            body.setMsgType(request.getMsgType());
+        }else{
+            Object func = applicationCache.getIfPresent(magicKey);
+            if(func instanceof IReplay){
+                body=((IReplay)func).replay(request);
+            }else{
+                body.setContent(":)谢谢使用");
+                body.setMsgType(request.getMsgType());
+            }
+        }
+        log.info("response :{}",body);
         return body;
     }
 

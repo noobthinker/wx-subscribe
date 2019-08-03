@@ -19,6 +19,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+import static com.xkorey.subscribe.util.Common.generateId;
+
 @Service
 @Slf4j
 public class PageService extends DiskDataService<Page> implements IPageService {
@@ -49,7 +51,7 @@ public class PageService extends DiskDataService<Page> implements IPageService {
     public String addPage(Page page) {
         ValueOperations<String, String> op = redisTemplate.opsForValue();
         if(StringUtils.isBlank(page.getId())){
-            page.setId(StringUtils.join(Calendar.getInstance().getTime().getTime()));
+            page.setId(generateId("p",7));
         }
         if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getNewsId())))){
             throw new BackException("素材id未找到");
