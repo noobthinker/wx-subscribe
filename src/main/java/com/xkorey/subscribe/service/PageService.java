@@ -56,7 +56,7 @@ public class PageService extends DiskDataService<Page> implements IPageService {
         if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getImageId())))){
             throw new BackException("图片id未找到");
         }else{
-            page.setUrl(op.get(StringUtils.join(Common.staffKey,page.getImageId())));
+            page.setPicUrl(op.get(StringUtils.join(Common.staffKey,page.getImageId())));
         }
         page.setCreatedAt(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(Calendar.getInstance()));
         List<Page> dataList = getAllData();
