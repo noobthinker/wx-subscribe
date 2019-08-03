@@ -68,9 +68,9 @@
                                 <th style="width: 10px">#</th>
                                 <td>Id</td>
                                 <td>状态</td>
-                                <th>标题</th>
+                                <th>关键字</th>
                                 <th>描述</th>
-                                <th>添加时间</th>
+                                <th>类型</th>
                                 <th>--</th>
                             </tr>
                             </thead>

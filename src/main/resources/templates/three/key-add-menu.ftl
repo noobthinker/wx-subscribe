@@ -81,7 +81,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 control-label">回复</label>
                                 <div class="col-sm-10">
-                                    <select name="nouse" onchange="changeIds()" class="form-control select2" multiple="multiple" data-placeholder="选择一个图文">
+                                    <select name="nouse" onchange="changeIds(this)" class="form-control select2" multiple="multiple" data-placeholder="选择一个图文">
                                         <#list dataList as data>
                                             <option value="${data.id}">${data.title}</option>
                                         </#list>
@@ -157,8 +157,8 @@
         $('.select2').select2()
     })
 
-    function changeIds() {
-        $("#functionTxt").val($('.select2').val().toString())
+    function changeIds(sel) {
+        $("#functionTxt").val($(sel).val().toString())
     }
 
 </script>
