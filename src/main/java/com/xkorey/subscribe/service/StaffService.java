@@ -77,7 +77,7 @@ public class StaffService implements IStaffService  {
                     m.put("title",s.getName());
                 }
                 if(StringUtils.isEmpty(s.getUrl())){
-                    m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
+                    m.put("url",s.getContent().getNewsItem().get(0).getUrl());
                 }else{
                     m.put("url",s.getUrl());
                 }
