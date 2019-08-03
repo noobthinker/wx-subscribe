@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.cache.Cache;
 import com.google.common.reflect.TypeToken;
+import com.xkorey.subscribe.exception.BackException;
+import com.xkorey.subscribe.pojo.dto.BackUser;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,13 @@ public abstract class DiskDataService<T> implements IDiskDataService<T> {
         return type;
     }
 
+    List<T> getAllData(){
+        List<T> dataList = (List<T>) applicationCache.getIfPresent(getPrefix());
+        if (CollectionUtils.isEmpty(dataList)) {
+            throw new BackException("记录为空");
+        }
+        return dataList;
+    }
 
 }
 

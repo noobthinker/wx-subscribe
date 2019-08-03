@@ -4,11 +4,13 @@ import com.xkorey.subscribe.enums.StaffType;
 import com.xkorey.subscribe.pojo.Staff;
 import com.xkorey.subscribe.pojo.StaffItemRequest;
 import com.xkorey.subscribe.pojo.StaffItemResponse;
+import com.xkorey.subscribe.util.Common;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class StaffService  extends DiskDataService implements IStaffService  {
+public class StaffService implements IStaffService  {
 
 
     @Autowired
@@ -30,6 +32,9 @@ public class StaffService  extends DiskDataService implements IStaffService  {
 
     @Autowired
     IService service;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     @Value("${wx.staffUrl}")
     private String staffUrl;
@@ -76,6 +81,7 @@ public class StaffService  extends DiskDataService implements IStaffService  {
                 }else{
                     m.put("url",s.getUrl());
                 }
+                redisTemplate.opsForValue().set(StringUtils.join(Common.staffKey,m.get("id")),m.get("url").toString());
                 result.add(m);
             });
             model.addAttribute("staffList",result);
@@ -88,12 +94,6 @@ public class StaffService  extends DiskDataService implements IStaffService  {
         model.addAttribute("pre",Math.max(0,page-1));
         model.addAttribute("count",count);
         return "sec/staff/all";
-    }
-
-
-    @Override
-    public String getPrefix() {
-        return "staff";
     }
 
 

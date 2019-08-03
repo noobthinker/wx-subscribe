@@ -3,6 +3,7 @@ package com.xkorey.subscribe;
 import com.xkorey.subscribe.enums.StaffType;
 import com.xkorey.subscribe.pojo.dto.BackUser;
 import com.xkorey.subscribe.pojo.form.Login;
+import com.xkorey.subscribe.service.IPageService;
 import com.xkorey.subscribe.service.IStaffService;
 import com.xkorey.subscribe.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class AdminController {
 
     @Autowired
     IStaffService staffService;
+
+    @Autowired
+    IPageService pageService;
 
     @RequestMapping({"/login.html","/login"})
     public String login(Model model){
@@ -84,8 +88,8 @@ public class AdminController {
 
 
     @RequestMapping("/back/msgPage.html")
-    public String msgPage(){
-        return "sec/msg/page";
+    public String msgPage(Model model){
+        return pageService.getAll(model);
     }
 
 

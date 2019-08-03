@@ -6,4 +6,6 @@ public class Common {
 
     public static String redisAllCountKey="count:all";
     public static String redisDayCountKey="count:day:";
+
+    public static String staffKey="staff:";
 }
