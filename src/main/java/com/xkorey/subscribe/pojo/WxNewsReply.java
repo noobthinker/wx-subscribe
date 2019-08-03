@@ -33,7 +33,7 @@ public class WxNewsReply {
         private String PicUrl;
 
         @XmlElement
-        private String url;
+        private String Url;
     }
 
 }
