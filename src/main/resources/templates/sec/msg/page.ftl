@@ -69,6 +69,7 @@
                                 <th>标题</th>
                                 <th>描述</th>
                                 <th>添加时间</th>
+                                <th>备注</th>
                                 <th>--</th>
                             </tr>
                             </thead>
@@ -81,6 +82,7 @@
                                 <td>
                                     ${page.desc}</td>
                                 <td>${page.createdAt}</td>
+                                <td>${page.note}</td>
                                 <td><a href="${page.url}" target="_blank">查看</a></td>
                             </tr>
                             </#list>
