@@ -93,6 +93,12 @@ public class AdminController {
         return pageService.getAll(model);
     }
 
+    @RequestMapping("back/msg-page-{id}.html")
+    public String msgPageDetail(Model model,@PathVariable String id){
+        pageService.onePage(id,model);
+        return "three/page-detail";
+    }
+
     @RequestMapping("/back/user-page-add.html")
     public String msgPageAdd(){
         return "three/page-add";

@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -47,7 +48,9 @@ public class PageService extends DiskDataService<Page> implements IPageService {
     @Override
     public String addPage(Page page) {
         ValueOperations<String, String> op = redisTemplate.opsForValue();
-        page.setId(StringUtils.join(Calendar.getInstance().getTime().getTime()));
+        if(StringUtils.isBlank(page.getId())){
+            page.setId(StringUtils.join(Calendar.getInstance().getTime().getTime()));
+        }
         if(StringUtils.isEmpty(op.get(StringUtils.join(Common.staffKey,page.getNewsId())))){
             throw new BackException("素材id未找到");
         }else{
@@ -64,8 +67,21 @@ public class PageService extends DiskDataService<Page> implements IPageService {
         if(CollectionUtils.isEmpty(dataList)){
             applicationCache.put(getPrefix(),dataList);
         }
+        Optional<Page> exsit = dataList.stream().filter(d->d.getId().equalsIgnoreCase(page.getId())).findAny();
+        if(exsit.isPresent()){
+            dataList.remove(exsit);
+        }
         dataList.add(page);
         needSaveToDisk.incrementAndGet();
         return "redirect:/back/msgPage.html";
+    }
+
+    @Override
+    public void onePage(String pageId,Model model) {
+        Optional<Page> result = getAllData().stream().filter(i->i.getId().equalsIgnoreCase(pageId)).findAny();
+        if(result.isPresent()){
+            model.addAttribute("page",result.get());
+        }
+        throw new BackException("图文消息未找到");
     }
 }

@@ -8,4 +8,6 @@ public interface IPageService {
     String getAll(Model model);
 
     String addPage(Page page);
+
+    void onePage(String pageId,Model model);
 }
