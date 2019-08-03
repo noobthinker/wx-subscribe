@@ -81,7 +81,8 @@ public class PageService extends DiskDataService<Page> implements IPageService {
         Optional<Page> result = getAllData().stream().filter(i->i.getId().equalsIgnoreCase(pageId)).findAny();
         if(result.isPresent()){
             model.addAttribute("page",result.get());
+        }else{
+            throw new BackException("图文消息未找到");
         }
-        throw new BackException("图文消息未找到");
     }
 }
