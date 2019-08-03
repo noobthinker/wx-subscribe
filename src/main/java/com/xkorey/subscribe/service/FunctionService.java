@@ -128,7 +128,6 @@ public class FunctionService extends DiskDataService<Function> implements IFunct
                             MessageRequest body = new MessageRequest();
                             body.setToUserName(req.getFromUserName());
                             body.setFromUserName(req.getToUserName());
-                            body.setContent(function.getFunctionTxt());
                             body.setCreateTime(new Date().getTime() / 1000);
                             body.setMsgType(WxEventType.news.getName());
                             body.setArticleCount(function.getFunctionTxt().split(",").length);
