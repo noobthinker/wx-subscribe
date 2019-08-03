@@ -143,7 +143,7 @@ public class FunctionService extends DiskDataService<Function> implements IFunct
                                 if (result.isPresent()) {
                                     tmp.setDescription(result.get().getDesc());
                                     tmp.setTitle(result.get().getTitle());
-                                    tmp.setUrl(StringUtils.join("<![CDATA[",result.get().getUrl(),"]]"));
+                                    tmp.setUrl(result.get().getUrl());
                                     tmp.setPicUrl(result.get().getPicUrl());
                                 }
                             });
