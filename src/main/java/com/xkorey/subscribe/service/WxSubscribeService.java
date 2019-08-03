@@ -2,6 +2,7 @@ package com.xkorey.subscribe.service;
 
 import com.google.common.cache.Cache;
 import com.google.common.collect.Maps;
+import com.xkorey.subscribe.enums.WxEventType;
 import com.xkorey.subscribe.pojo.MessageRequest;
 import com.xkorey.subscribe.pojo.MessageResponse;
 import com.xkorey.subscribe.pojo.TokenResult;
@@ -67,7 +68,7 @@ public class WxSubscribeService implements IService {
                 magicKey="subscribe";
             }
             if(StringUtils.isNotEmpty(request.getEventKey())){
-                magicKey=request.getEvent();
+                magicKey=request.getEventKey();
             }
         }else{
             if(request.getMsgType().equalsIgnoreCase("text")){
@@ -81,14 +82,14 @@ public class WxSubscribeService implements IService {
         body.setToUserName(request.getFromUserName());
         if(StringUtils.isEmpty(magicKey)){
             body.setContent("该功能暂不支持，敬请期待！");
-            body.setMsgType(request.getMsgType());
+            body.setMsgType(WxEventType.text.getName());
         }else{
             Object func = applicationCache.getIfPresent(StringUtils.join(magicWord,magicKey));
             if(func instanceof IReplay){
                 body=((IReplay)func).replay(request);
             }else{
                 body.setContent(":)谢谢使用");
-                body.setMsgType(request.getMsgType());
+                body.setMsgType(WxEventType.text.getName());
             }
         }
         log.info("response :{}",body);
