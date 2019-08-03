@@ -1,7 +1,6 @@
 package com.xkorey.subscribe.pojo;
 
 
-import com.sun.xml.internal.txw2.annotation.XmlCDATA;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
