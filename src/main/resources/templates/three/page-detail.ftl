@@ -83,7 +83,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputPassword4" placeholder="跳转素材id" name="newsId" value="${page.newsId}">
                                 </div>
-                                <div  class="col-sm-10" style="height: 500px">
+                                <div  class="col-sm-10">
                                     <a href="${page.url}" target="_blank">查看</a>
                                 </div>
                             </div>

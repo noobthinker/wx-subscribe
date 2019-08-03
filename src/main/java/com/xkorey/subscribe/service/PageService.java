@@ -69,7 +69,7 @@ public class PageService extends DiskDataService<Page> implements IPageService {
         }
         Optional<Page> exsit = dataList.stream().filter(d->d.getId().equalsIgnoreCase(page.getId())).findAny();
         if(exsit.isPresent()){
-            dataList.remove(exsit);
+            dataList.remove(exsit.get());
         }
         dataList.add(page);
         needSaveToDisk.incrementAndGet();
