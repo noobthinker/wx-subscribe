@@ -72,12 +72,12 @@ public class StaffService implements IStaffService  {
                 Map m = new HashMap(3);
                 m.put("id",s.getMediaId());
                 if(StringUtils.isEmpty(s.getName())){
-                    m.put("title",s.getContent().getNewsItem().get(0).getName());
+                    m.put("title",s.getContent().getNewsItem().get(0).getTitle());
                 }else{
                     m.put("title",s.getName());
                 }
                 if(StringUtils.isEmpty(s.getUrl())){
-                    m.put("url",s.getContent().getNewsItem().get(0).getUrl());
+                    m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
                 }else{
                     m.put("url",s.getUrl());
                 }
