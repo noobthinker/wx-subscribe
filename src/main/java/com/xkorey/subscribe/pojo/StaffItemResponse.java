@@ -13,6 +13,10 @@ public class StaffItemResponse {
 
     private StaffContent content;
 
+    private String name;
+
+    private String url;
+
 
     @Data
     public static class StaffContent{

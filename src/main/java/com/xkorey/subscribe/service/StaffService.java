@@ -66,15 +66,15 @@ public class StaffService  extends DiskDataService implements IStaffService  {
             staff.getItem().stream().forEach(s->{
                 Map m = new HashMap(3);
                 m.put("id",s.getMediaId());
-                if(StringUtils.isEmpty(s.getContent().getNewsItem().get(0).getTitle())){
+                if(StringUtils.isEmpty(s.getName())){
                     m.put("title",s.getContent().getNewsItem().get(0).getName());
                 }else{
-                    m.put("title",s.getContent().getNewsItem().get(0).getTitle());
+                    m.put("title",s.getName());
                 }
-                if(StringUtils.isEmpty(s.getContent().getNewsItem().get(0).getContentSourceUrl())){
+                if(StringUtils.isEmpty(s.getUrl())){
                     m.put("url",s.getContent().getNewsItem().get(0).getUrl());
                 }else{
-                    m.put("url",s.getContent().getNewsItem().get(0).getContentSourceUrl());
+                    m.put("url",s.getUrl());
                 }
                 result.add(m);
             });
