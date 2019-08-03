@@ -94,8 +94,8 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <a href="/back/staff-${next}.html" class="btn btn-sm btn-info float-left">下一页</a>
-                        <a href="/back/staff-${pre}.html" class="btn btn-sm btn-info float-right">上一页</a>
+                        <a href="/back/staff-i-${next}.html" class="btn btn-sm btn-info float-left">下一页</a>
+                        <a href="/back/staff-i-${pre}.html" class="btn btn-sm btn-info float-right">上一页</a>
                     </div>
                 </div>
             </div>
