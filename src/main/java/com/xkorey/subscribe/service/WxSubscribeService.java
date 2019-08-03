@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static com.xkorey.subscribe.util.Common.magicWord;
+
 @Service
 @Slf4j
 public class WxSubscribeService implements IService {
@@ -81,7 +83,7 @@ public class WxSubscribeService implements IService {
             body.setContent("该功能暂不支持，敬请期待！");
             body.setMsgType(request.getMsgType());
         }else{
-            Object func = applicationCache.getIfPresent(magicKey);
+            Object func = applicationCache.getIfPresent(StringUtils.join(magicWord,magicKey));
             if(func instanceof IReplay){
                 body=((IReplay)func).replay(request);
             }else{

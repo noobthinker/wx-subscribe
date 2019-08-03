@@ -1,11 +1,17 @@
 package com.xkorey.subscribe;
 
+import com.xkorey.subscribe.enums.KeyType;
 import com.xkorey.subscribe.enums.StaffType;
+import com.xkorey.subscribe.exception.BackException;
 import com.xkorey.subscribe.pojo.Activity;
+import com.xkorey.subscribe.pojo.Function;
+import com.xkorey.subscribe.pojo.Menu;
 import com.xkorey.subscribe.pojo.dto.BackUser;
 import com.xkorey.subscribe.pojo.dto.Page;
 import com.xkorey.subscribe.pojo.form.Login;
 import com.xkorey.subscribe.service.*;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -33,6 +43,9 @@ public class AdminController {
     @Autowired
     IActivityService activityService;
 
+    @Autowired
+    IMenuService menuService;
+
     @RequestMapping({"/login.html","/login"})
     public String login(Model model){
         return "login";
@@ -46,9 +59,58 @@ public class AdminController {
 
 
     @RequestMapping("/back/menu.html")
-    public String menu(){
+    public String menu(Model model){
+        List<Menu> dataList = ((DiskDataService)menuService).getAllData();
+        model.addAttribute("dataList",dataList);
         return "sec/menu";
     }
+
+    @RequestMapping("/back/menu-edit-{id}.html")
+    public String menuSub(Model model,@PathVariable String id){
+        List<Menu> dataList = ((DiskDataService)menuService).getAllData();
+
+        dataList.stream().forEach(menu -> {
+            if(menu.getId().equalsIgnoreCase(id)){
+                model.addAttribute("data",menu);
+            }else{
+                Optional<Menu> subMenu = menu.getSubButton().stream().filter(sub->sub.getId().equalsIgnoreCase(id)).findAny();
+                if(subMenu.isPresent()){
+                    model.addAttribute("data",subMenu.get());
+                }
+            }
+        });
+        if(!model.containsAttribute("data")){
+            throw new BackException("菜单未找到");
+        }
+        return "three/menu-edit";
+    }
+
+    @RequestMapping("/back/menu-add-submit.html")
+    public String menuAddSubmit(Menu menu,String parentId){
+        menuService.add(menu,parentId);
+        return "redirect:/back/menu.html";
+    }
+
+    @RequestMapping("back/menu-add.html")
+    public String menuAdd(Model model){
+        List<Menu> dataList = ((DiskDataService)menuService).getAllData();
+        if(CollectionUtils.isEmpty(dataList)){
+            model.addAttribute("dataList",CollectionUtils.emptyCollection());
+        }else{
+            model.addAttribute("dataList",dataList);
+        }
+        return "three/menu-add";
+    }
+
+    @RequestMapping("/back/menu-online.html")
+    public String menuOnline(){
+        menuService.create();
+        return "redirect:/back/menu.html";
+    }
+
+
+
+
 
     @RequestMapping("/back/user.html")
     public String backUser(Model model){
@@ -156,7 +218,73 @@ public class AdminController {
 
     @RequestMapping("/back/key-add-{type}.html")
     public String addKey(Model model,@PathVariable String type){
-        return "";
+        if("news".equalsIgnoreCase(type)){
+           List<Page> dataList =  ((DiskDataService)pageService).getAllData();
+           model.addAttribute("dataList",dataList);
+        }
+        if("activity".equalsIgnoreCase(type)){
+            List<Activity> dataList = ((DiskDataService)activityService).getAllData();
+            model.addAttribute("dataList",dataList);
+        }
+        if("menu".equalsIgnoreCase(type) || "menuActivity".equalsIgnoreCase(type)){
+            List<Menu> dataList = ((DiskDataService)menuService).getAllData();
+            List<Menu> canUseMenu = new ArrayList<>();
+            dataList.stream().forEach(menu -> {
+                if(CollectionUtils.isEmpty(menu.getSubButton())){
+                    canUseMenu.add(menu);
+                }else{
+                    menu.getSubButton().stream().forEach(sub->{
+                        if(CollectionUtils.isEmpty(sub.getSubButton())){
+                            canUseMenu.add(sub);
+                        }
+                    });
+                }
+            });
+            model.addAttribute("menuList",canUseMenu);
+            if("menu".equalsIgnoreCase(type)){
+                List<Page> pageList =  ((DiskDataService)pageService).getAllData();
+                model.addAttribute("dataList",pageList);
+            }
+            if("menuActivity".equalsIgnoreCase(type)){
+                List<Activity> activityList = ((DiskDataService)activityService).getAllData();
+                model.addAttribute("dataList",activityList);
+            }
+
+        }
+
+
+
+        return StringUtils.join( "three/key-add-",type);
+    }
+
+    @RequestMapping("/back/key-page.html")
+    public String keyPageList(Model model){
+        List<Function> dataList = ((DiskDataService)functionService).getAllData();
+        model.addAttribute("dataList",dataList);
+        return "sec/msg/key-page";
+    }
+
+    @RequestMapping("/back/key-add-{type}-submit.html")
+    public String addKeySubmit(Function function, @PathVariable String type){
+        function.setKeyType(KeyType.findType(type));
+        functionService.addFunction(function);
+        return "redirect:/back/key-page.html";
+    }
+
+    @RequestMapping("/back/key-page-convert-{id}.html")
+    public String keyPageStatusConvert(@PathVariable String id){
+        List<Function> dataList = ((DiskDataService)functionService).getAllData();
+        Optional<Function> result = dataList.stream().filter(function ->
+            function.getId().equalsIgnoreCase(id)).findAny();
+        if(result.isPresent()){
+            if(0==result.get().getStatus()){
+                result.get().setStatus(1);
+            }else{
+                result.get().setStatus(0);
+            }
+            functionService.addFunction(result.get());
+        }
+        return "redirect:/back/key-page.html";
     }
 
     @RequestMapping("/back/activity-add.html")
@@ -175,4 +303,5 @@ public class AdminController {
         activityService.add(activity);
         return "redirect:/back/activity.html";
     }
+
 }
