@@ -2,6 +2,7 @@ package com.xkorey.subscribe;
 
 import com.xkorey.subscribe.enums.StaffType;
 import com.xkorey.subscribe.pojo.dto.BackUser;
+import com.xkorey.subscribe.pojo.dto.Page;
 import com.xkorey.subscribe.pojo.form.Login;
 import com.xkorey.subscribe.service.IPageService;
 import com.xkorey.subscribe.service.IStaffService;
@@ -90,6 +91,16 @@ public class AdminController {
     @RequestMapping("/back/msgPage.html")
     public String msgPage(Model model){
         return pageService.getAll(model);
+    }
+
+    @RequestMapping("/back/user-page-add.html")
+    public String msgPageAdd(){
+        return "three/page-add";
+    }
+
+    @RequestMapping("/back/page-add-submit.html")
+    public String msgPageAddSubmit(@Valid Page page){
+        return pageService.addPage(page);
     }
 
 

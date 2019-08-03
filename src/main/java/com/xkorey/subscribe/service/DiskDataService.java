@@ -70,7 +70,7 @@ public abstract class DiskDataService<T> implements IDiskDataService<T> {
     List<T> getAllData(){
         List<T> dataList = (List<T>) applicationCache.getIfPresent(getPrefix());
         if (CollectionUtils.isEmpty(dataList)) {
-            throw new BackException("记录为空");
+            return new CopyOnWriteArrayList<T>();
         }
         return dataList;
     }
