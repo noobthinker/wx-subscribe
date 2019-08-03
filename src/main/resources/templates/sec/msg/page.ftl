@@ -66,6 +66,7 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
+                                <td>Id</td>
                                 <th>标题</th>
                                 <th>描述</th>
                                 <th>添加时间</th>
@@ -78,6 +79,7 @@
                             <#list pages as page>
                             <tr onclick="">
                                 <td>${1+page_index }</td>
+                                <td>${page.id}</td>
                                 <td>${page.title}</td>
                                 <td>
                                     ${page.desc}</td>
