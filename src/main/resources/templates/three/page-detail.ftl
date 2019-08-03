@@ -64,6 +64,7 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form class="form-horizontal" action="/back/page-add-submit.html">
+                        <input type="hidden" name="id" value="${page.id}">
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 control-label">标题</label>
@@ -83,7 +84,7 @@
                                     <input type="text" class="form-control" id="inputPassword4" placeholder="跳转素材id" name="newsId" value="${page.newsId}">
                                 </div>
                                 <div  class="col-sm-10" style="height: 500px">
-                                    <iframe src="${page.url}"></iframe>
+                                    <a href="${page.url}" target="_blank">查看</a>
                                 </div>
                             </div>
                             <div class="form-group row">
