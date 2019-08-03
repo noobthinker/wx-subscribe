@@ -30,7 +30,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-    <#include "../../sub/header.ftl"/>
+    <#include "../sub/header.ftl"/>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -43,8 +43,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">图文回复列表</li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/back/user.html">用户</a></li>
+                            <li class="breadcrumb-item active">用户列表</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -56,41 +57,52 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">图文回复列表</h3>
+                        <h3 class="card-title">添加图文</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>标题</th>
-                                <th>描述</th>
-                                <th>添加时间</th>
-                                <th>--</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <#list pages as page>
-                            <tr onclick="">
-                                <td>${1+page_index }</td>
-                                <td>${page.title}</td>
-                                <td>
-                                    ${page.desc}</td>
-                                <td>${page.createdAt}</td>
-                                <td><a href="${page.url}" target="_blank">查看</a></td>
-                            </tr>
-                            </#list>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer clearfix">
-                        <a href="/back/user-page-add.html" class="btn btn-sm btn-info float-left">添加</a>
-                    </div>
+                    <!-- form start -->
+                    <form class="form-horizontal" action="/back/page-add-submit.html">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 control-label">标题</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="标题" name="title">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 control-label">描述</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputPassword3" placeholder="描述" name="desc">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 control-label">跳转素材id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputPassword4" placeholder="跳转素材id" name="newsId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 control-label">封面素材id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputPassword4" placeholder="封面素材id" name="imageId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputPassword4" placeholder="备注" name="note">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">提交</button>
+                            <button type="submit" class="btn btn-default float-right">Cancel</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
                 </div>
             </div>
         </div>
@@ -107,7 +119,7 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <#include "../../sub/footer.ftl">
+    <#include "../sub/footer.ftl">
 
 </div>
 <!-- ./wrapper -->
