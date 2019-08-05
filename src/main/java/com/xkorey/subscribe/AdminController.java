@@ -73,9 +73,11 @@ public class AdminController {
             if(menu.getId().equalsIgnoreCase(id)){
                 model.addAttribute("data",menu);
             }else{
-                Optional<Menu> subMenu = menu.getSubButton().stream().filter(sub->sub.getId().equalsIgnoreCase(id)).findAny();
-                if(subMenu.isPresent()){
-                    model.addAttribute("data",subMenu.get());
+                if(CollectionUtils.isNotEmpty(menu.getSubButton())){
+                    Optional<Menu> subMenu = menu.getSubButton().stream().filter(sub->sub.getId().equalsIgnoreCase(id)).findAny();
+                    if(subMenu.isPresent()){
+                        model.addAttribute("data",subMenu.get());
+                    }
                 }
             }
         });
