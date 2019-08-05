@@ -86,7 +86,7 @@ public class AdminController {
     }
 
     @RequestMapping("/back/menu-add-submit.html")
-    public String menuAddSubmit(Menu menu,String parentId){
+    public String menuAddSubmit(@Valid Menu menu,String parentId){
         menuService.add(menu,parentId);
         return "redirect:/back/menu.html";
     }
