@@ -56,6 +56,9 @@ public class MenuService extends DiskDataService<Menu> implements IMenuService {
                     if(menu.getId().equalsIgnoreCase(parentId)){
                         menu.setName(function.getName());
                     }else{
+                        if(CollectionUtils.isEmpty(menu.getSubButton())){
+                            return;
+                        }
                         Optional<Menu> sub=menu.getSubButton().stream().filter(t->t.getId().equalsIgnoreCase(parentId)).findAny();
                         if(sub.isPresent()){
                             menu.setKey(null);
