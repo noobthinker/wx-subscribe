@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap4.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -62,7 +64,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
-                        <table class="table">
+                        <table class="table table-bordered table-striped" id="dataTab">
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
@@ -134,6 +136,8 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/plugins/datatables/dataTables.bootstrap4.js"></script>
 <!-- AdminLTE App -->
 <script src="/js/adminlte.js"></script>
 
@@ -151,5 +155,17 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="/js/pages/dashboard2.js"></script>
+
+<script>
+    $(function () {
+        $("#dataTab").DataTable({
+            'paging'      : false,
+            'lengthChange': false,
+            'searching'   : true,
+            'autoWidth'   : false
+        });
+    });
+
+</script>
 </body>
 </html>
