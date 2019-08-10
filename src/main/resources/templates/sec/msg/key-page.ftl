@@ -85,7 +85,14 @@
                                     <#else>
                                     下线
                                 </#if></td>
-                                <td>${data.targetList}</td>
+                                <td>
+                                    <#if data.targetList=="subscribe">
+                                            【关注回复】
+                                        <#else>
+                                            ${data.targetList}
+                                    </#if>
+
+                                </td>
                                 <td>${data.functionTxt}</td>
                                 <td>
                                     ${data.keyType.getDesc()}</td>

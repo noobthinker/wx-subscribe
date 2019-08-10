@@ -68,10 +68,10 @@
                     <form class="form-horizontal" action="/back/key-add-news-submit.html" method="post">
                         <input type="hidden" name="functionTxt" id="functionTxt">
                         <div class="card-body">
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">接受文本，多个【,】分割</label>
+                            <div class="form-group row" id="magicTxt">
+                                <label for="magicTxtInput" class="col-sm-2 control-label">接受文本，多个【,】分割</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="文本" name="targetList">
+                                    <input type="text" class="form-control" id="magicTxtInput" placeholder="文本" name="targetList">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -93,6 +93,16 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 control-label">关注回复</label>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" onclick="changeTxt(this)"> 关注回复
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -156,6 +166,21 @@
     function changeIds() {
         $("#functionTxt").val($('.select2').val().toString())
     }
+
+    var oldTxt="";
+    function changeTxt(it) {
+        if(it.checked){
+            $("#magicTxt").hide();
+            if($("#magicTxtInput").val()){
+                oldTxt=$("#magicTxtInput").val()
+            }
+            $("#magicTxtInput").val("subscribe");
+        }else{
+            $("#magicTxt").show();
+            $("#magicTxtInput").val(oldTxt);
+        }
+    }
+
 
 </script>
 </body>

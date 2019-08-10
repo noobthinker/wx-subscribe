@@ -64,7 +64,7 @@ public class WxSubscribeService implements IService {
         // event push
         String magicKey=null;
         if(request.getMsgType().equalsIgnoreCase("event")){
-            if(request.getEvent().equalsIgnoreCase("")){
+            if(request.getEvent().equalsIgnoreCase("subscribe")){
                 magicKey="subscribe";
             }
             if(StringUtils.isNotEmpty(request.getEventKey())){
